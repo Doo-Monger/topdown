@@ -1,0 +1,3 @@
+## shit to do:
+	## figure out how to adjust particle density when moving 
+	
