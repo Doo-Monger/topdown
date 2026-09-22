@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c6ny5s5qrfg77"]
+
+[sub_resource type="Gradient" id="Gradient_isgey"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_isgey")
+width = 192
+height = 192
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_syrjp"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_we4ua"]
+gradient = SubResource("Gradient_syrjp")
+width = 192
+height = 192
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Node2D" type="Node2D" unique_id=1236731682]
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1060049649]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="PointLight2D3" type="PointLight2D" parent="PointLight2D" unique_id=349010368]
+range_item_cull_mask = 2
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_we4ua")

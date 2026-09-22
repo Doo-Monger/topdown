@@ -15,10 +15,10 @@ func resolve_collisions() -> void:
 		var COLLISION := get_slide_collision(i)
 		var COLLISION_BODY := COLLISION.get_collider() as MovableObject
 		if COLLISION_BODY:
-				print(COLLISION.get_normal())
+				# print(COLLISION.get_normal())
 				COLLISION_BODY.apply_impact(velocity)
 func get_input() -> void:
-	var VECTOR = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var VECTOR : Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = VECTOR * SPEED
 	pass
 	

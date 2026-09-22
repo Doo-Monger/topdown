@@ -1,5 +1,6 @@
 extends Node
-
+var DET_COUNT: int = 0 
+var DET_COUNT_VALID: int = 0 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

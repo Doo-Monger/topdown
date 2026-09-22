@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ctbxac12s7a4e" path="res://moveable_obj.gd" id="1_87uk7"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g4v7s"]
+cull_mode = 2
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
 [sub_resource type="Gradient" id="Gradient_ev35b"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
@@ -16,11 +20,18 @@ fill_to = Vector2(1, 0.5)
 size = Vector2(8, 8)
 
 [node name="moveable_obj" type="CharacterBody2D" unique_id=262011039]
+light_mask = 2
+collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_87uk7")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=195877043]
+occluder = SubResource("OccluderPolygon2D_g4v7s")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1170318531]
+light_mask = 2
 texture = SubResource("GradientTexture2D_g4v7s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=242345796]
+visible = false
 shape = SubResource("RectangleShape2D_g4v7s")

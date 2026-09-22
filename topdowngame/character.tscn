@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://c3lmfn7wp605r"]
 
 [ext_resource type="Script" uid="uid://chc8m7g5vyysy" path="res://character.gd" id="1_glpr6"]
+[ext_resource type="PackedScene" uid="uid://4j15n685x0rt" path="res://reallight.tscn" id="2_pjt0s"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p5pve"]
+light_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4v7s"]
 radius = 6.0
@@ -52,6 +56,7 @@ color = Color(0.8901193, 0.9945101, 0.9609614, 1)
 alpha_curve = SubResource("CurveTexture_wijl4")
 
 [node name="character" type="CharacterBody2D" unique_id=584528449]
+material = SubResource("CanvasItemMaterial_p5pve")
 motion_mode = 1
 script = ExtResource("1_glpr6")
 metadata/_edit_group_ = true
@@ -62,6 +67,7 @@ shape = SubResource("CircleShape2D_g4v7s")
 
 [node name="character_spr" type="Sprite2D" parent="." unique_id=443707525]
 texture_filter = 1
+use_parent_material = true
 texture = SubResource("GradientTexture2D_g4v7s")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2091042784]
@@ -73,3 +79,6 @@ fixed_fps = 60
 interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_g4v7s")
+
+[node name="REALlight" parent="." unique_id=1630324743 instance=ExtResource("2_pjt0s")]
+JITTER_RAD_MAX = 1.07

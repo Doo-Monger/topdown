@@ -2,13 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://kpirsupw1v8y" path="res://tile_set.png" id="1_2urvg"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2urvg"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ej02t"]
 texture = ExtResource("1_2urvg")
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2urvg")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2urvg")
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
+2:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2urvg")
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
 1:1/0 = 0
@@ -34,5 +40,6 @@ texture = ExtResource("1_2urvg")
 0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [resource]
+occlusion_layer_0/light_mask = 3
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ej02t")

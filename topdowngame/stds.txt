@@ -1,3 +1,18 @@
 	shit to do:
 	 figure out how to adjust particle density when moving 
 	
+	
+	
+	
+	
+Ctrl+ click to view var declaration.
+
+Copy pasting root node just instantiates. If want node itself, must not be root node.	
+	
+exporting a variable means that you are able to adjust said variable while using the rest of
+the script unchanged. For example, exporting friction for movable object suggests that later on
+we may want objects that are identical in their behavior except for their friction value. If 
+we didn't export friction value, then that means we would have to rewrite all of the same code
+for every single movable object just to change a single variable. 
+	Why isn't this true for exporting var of type : PointLight2d?
+		Nvm now it does? wtf

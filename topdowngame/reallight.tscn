@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://4j15n685x0rt"]
+
+[ext_resource type="Script" uid="uid://cceaxw54gmltl" path="res://reallight.gd" id="1_xr1tw"]
+[ext_resource type="Texture2D" uid="uid://bmesm0bcv8ts4" path="res://light.tres" id="2_owhrm"]
+
+[node name="REALlight" type="Node2D" unique_id=1630324743 node_paths=PackedStringArray("LIGHT_A", "LIGHT_B")]
+script = ExtResource("1_xr1tw")
+JITTER_RAD_MIN = 1.1
+LIGHT_A = NodePath("LightA")
+LIGHT_B = NodePath("LightB")
+
+[node name="LightA" type="PointLight2D" parent="." unique_id=1661172442]
+shadow_enabled = true
+texture = ExtResource("2_owhrm")
+
+[node name="LightB" type="PointLight2D" parent="." unique_id=688612223]
+range_item_cull_mask = 2
+shadow_enabled = true
+shadow_item_cull_mask = 2
+texture = ExtResource("2_owhrm")

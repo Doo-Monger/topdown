@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cgt1pielpx1pc"]
+
+[ext_resource type="Script" uid="uid://bicy50gde16tn" path="res://detector.gd" id="1_kiji7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_urblq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(12, 12)
+
+[sub_resource type="Gradient" id="Gradient_8tf4g"]
+offsets = PackedFloat32Array(0, 0.70914125, 0.92520773)
+colors = PackedColorArray(1, 1, 1, 1, 0.65012825, 0.6501283, 0.65012825, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yf5fn"]
+gradient = SubResource("Gradient_8tf4g")
+width = 12
+height = 12
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kiji7"]
+
+[sub_resource type="Gradient" id="Gradient_kiji7"]
+offsets = PackedFloat32Array(0.049861494, 0.66481996)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_kiji7")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Detector" type="Area2D" unique_id=548578377 node_paths=PackedStringArray("SPRITE", "LIGHT")]
+material = SubResource("CanvasItemMaterial_urblq")
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_kiji7")
+SPRITE = NodePath("Sprite2D")
+LIGHT = NodePath("PointLight2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=108360800]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1011969182]
+modulate = Color(0.8071817, 0.25210294, 0, 1)
+texture_filter = 1
+texture = SubResource("GradientTexture2D_yf5fn")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1092391434]
+material = SubResource("CanvasItemMaterial_kiji7")
+color = Color(0.69803923, 0, 0, 1)
+range_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_g4v7s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
