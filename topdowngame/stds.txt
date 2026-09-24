@@ -16,3 +16,6 @@ we didn't export friction value, then that means we would have to rewrite all of
 for every single movable object just to change a single variable. 
 	Why isn't this true for exporting var of type : PointLight2d?
 		Nvm now it does? wtf
+
+Prepend function names with underscore if they aren't meant to be called outside of the script
+they are in.

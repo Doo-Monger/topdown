@@ -36,6 +36,9 @@ material = SubResource("CanvasItemMaterial_urblq")
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_kiji7")
+OFF_COLOR = null
+ON_COLOR = null
+PULSE_FREQ = null
 SPRITE = NodePath("Sprite2D")
 LIGHT = NodePath("PointLight2D")
 

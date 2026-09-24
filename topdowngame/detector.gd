@@ -1,5 +1,8 @@
+class_name Detector
 extends Area2D
+
 signal VALIDITY_CHANGED(VALID: bool)
+
 @export_color_no_alpha var OFF_COLOR: Color = Color.RED
 @export_color_no_alpha var ON_COLOR: Color = Color.GREEN
 @export_range(0.1, 1.0) var PULSE_FREQ: float = 0.25
@@ -34,14 +37,15 @@ func _on_body_entered(_body: Node2D) -> void:
 	
 	LIGHT.color = ON_COLOR
 	LIGHT.texture_scale = 1.2
-	
 	SPRITE.modulate = ON_COLOR
-
-	VALIDITY_CHANGED.emit(true)
+	if OBJECT_COUNT == 1: 
+		VALIDITY_CHANGED.emit(true)
+	
 func _on_body_exited(_body: Node2D) -> void:
 	OBJECT_COUNT -= 1
 	if OBJECT_COUNT == 0:
 		LIGHT.color = OFF_COLOR
-		VALIDITY_CHANGED.emit(false)
 		PULSE_PROG = 0.0
+		
+		VALIDITY_CHANGED.emit(false)
 		 
