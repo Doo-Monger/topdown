@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://cr3v0uqms1gks"]
 
 [ext_resource type="Script" uid="uid://nkh4n0ji5vg6" path="res://map.gd" id="1_dnryk"]
-[ext_resource type="PackedScene" uid="uid://cjtut3vfarsvl" path="res://maps/map.002.tscn" id="2_o05f1"]
 [ext_resource type="TileSet" uid="uid://ixho0ayhft2s" path="res://tileset.tres" id="3_3d5h4"]
 [ext_resource type="PackedScene" uid="uid://c3lmfn7wp605r" path="res://character.tscn" id="4_krt0b"]
 [ext_resource type="PackedScene" uid="uid://cvs66jwabnnq6" path="res://moveable_obj.tscn" id="5_u1iuh"]
@@ -9,7 +8,6 @@
 
 [node name="map" type="Node" unique_id=452312490]
 script = ExtResource("1_dnryk")
-Next_Scene = ExtResource("2_o05f1")
 
 [node name="tilemap" type="TileMapLayer" parent="." unique_id=1890476655]
 z_index = -1
