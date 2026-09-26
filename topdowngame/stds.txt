@@ -1,6 +1,10 @@
 	shit to do:
 	 figure out how to adjust particle density when moving 
 	
+ctrl+K to comment stuff out
+
+get_node() is the same as putting a dollar sign in front of object?
+
 Ctrl+ click to view var declaration.
 
 Copy pasting root node just instantiates. If want node itself, must not be root node.	
