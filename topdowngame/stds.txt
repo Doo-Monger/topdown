@@ -1,10 +1,6 @@
 	shit to do:
 	 figure out how to adjust particle density when moving 
 	
-	
-	
-	
-	
 Ctrl+ click to view var declaration.
 
 Copy pasting root node just instantiates. If want node itself, must not be root node.	
@@ -19,3 +15,7 @@ for every single movable object just to change a single variable.
 
 Prepend function names with underscore if they aren't meant to be called outside of the script
 they are in.
+
+Apparently _ready() functions will run even if the node they're attached to doesn't enter the
+remote scene tree?? 
+	THERE IS A DIFFERENCE BETWEEN A .GD AND A .TSCN GLOBAL VARIABLE FRIEND

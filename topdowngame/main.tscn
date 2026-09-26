@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://c0d6ctpecggym" path="res://main.gd" id="1_ig7tw"]
 
 [node name="Main" type="Node" unique_id=637777695]
+editor_description = "NOT ASS"
 script = ExtResource("1_ig7tw")

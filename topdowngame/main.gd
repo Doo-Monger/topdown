@@ -1,7 +1,7 @@
 extends Node
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#self.set_editor_description("ass")
 	pass # Replace with function body.
 
 
@@ -17,6 +17,7 @@ func load_next_map() -> void:
 	var next_map_path: String = ".".join(split_path)
 	
 	if ResourceLoader.exists(next_map_path):
+		MapTransition.play_exit_map()
 		get_tree().change_scene_to_file.call_deferred(next_map_path)
 	else:
 		get_tree().change_scene_to_file("res://maps/map.001.tscn")
@@ -24,4 +25,5 @@ func load_next_map() -> void:
 		
 func load_next_map_deferred() -> void:
 	var current_map_path: String = get_tree().current_scene.scene_file_path
+	
 	
