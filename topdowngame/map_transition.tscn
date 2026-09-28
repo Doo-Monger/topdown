@@ -98,7 +98,7 @@ script = ExtResource("1_t1oyb")
 animation_player = NodePath("CanvasLayer/transition_animation")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=827902138]
-layer = 3
+layer = 4
 
 [node name="transition_animation" type="AnimationPlayer" parent="CanvasLayer" unique_id=1115614127]
 root_node = NodePath("../..")

@@ -1,6 +1,8 @@
 	shit to do:
 	 figure out how to adjust particle density when moving 
 	
+Dictionary within dictionary is neat
+	
 ctrl+K to comment stuff out
 
 get_node() is the same as putting a dollar sign in front of object?

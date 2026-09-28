@@ -5,6 +5,7 @@ extends Control
 func _ready() -> void:
 	if not Main.can_continue():
 		$menu_buttons/continue_button.disabled = true
+	print(OS.get_data_dir())
 
 func _on_new_game_button_pressed() -> void:
 	Main.load_map(first_map.resource_path)

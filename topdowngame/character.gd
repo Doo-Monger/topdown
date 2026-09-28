@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 func resolve_collisions() -> void:
 	for i in get_slide_collision_count():
 		var COLLISION := get_slide_collision(i)
-		var COLLISION_BODY := COLLISION.get_collider() as MovableObject
+		var COLLISION_BODY : MovableObject = COLLISION.get_collider() as MovableObject
 		if COLLISION_BODY:
 				# print(COLLISION.get_normal())
 				COLLISION_BODY.apply_impact(velocity)

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Main="*uid://c0d6ctpecggym"
 MapTransition="*uid://boy7yxehnvx8m"
+Hud="*uid://dhof1wxpnwwqd"
 
 [debug]
 

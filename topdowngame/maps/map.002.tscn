@@ -8,6 +8,7 @@
 
 [node name="Map002" type="Node" unique_id=1869980539]
 script = ExtResource("1_nj66f")
+map_name = "Map Two"
 
 [node name="tilemap" type="TileMapLayer" parent="." unique_id=1433205912]
 z_index = -1
