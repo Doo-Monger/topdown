@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://cbelm54pdtrlu" path="res://hud.gd" id="1_37p78"]
 [ext_resource type="FontFile" uid="uid://rstw702am2vk" path="res://Bitrimus.ttf" id="2_64ctp"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=628167690 node_paths=PackedStringArray("map_name_label", "map_time_label")]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=628167690 node_paths=PackedStringArray("map_name_label", "map_time_label", "best_time_label", "new_best_time_map_label")]
 layer = 3
 script = ExtResource("1_37p78")
 map_name_label = NodePath("map_name")
 map_time_label = NodePath("map_time")
+best_time_label = NodePath("best_time")
+new_best_time_map_label = NodePath("new_best_time")
 
 [node name="map_name" type="Label" parent="." unique_id=920621197]
 offset_left = 16.0
@@ -25,3 +27,18 @@ theme_override_fonts/font = ExtResource("2_64ctp")
 theme_override_font_sizes/font_size = 16
 text = "0.0"
 horizontal_alignment = 2
+
+[node name="best_time" type="Label" parent="." unique_id=1302440052]
+offset_left = 269.0
+offset_right = 329.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_64ctp")
+text = "sum ting wong"
+
+[node name="new_best_time" type="Label" parent="." unique_id=1324620465]
+offset_left = 16.0
+offset_top = 214.0
+offset_right = 164.0
+offset_bottom = 237.0
+theme_override_fonts/font = ExtResource("2_64ctp")
+text = "New best time! "

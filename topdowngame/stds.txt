@@ -1,6 +1,8 @@
 	shit to do:
 	 figure out how to adjust particle density when moving 
 	
+Variables referencing the same dictionary object is fine
+	
 Dictionary within dictionary is neat
 	
 ctrl+K to comment stuff out

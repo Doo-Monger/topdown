@@ -1,13 +1,18 @@
 extends Node
 
+const map_path_prefix: String = "res://maps/"
 const game_save_path: String = "user://save.save"
-const key_map_path: String = "map_path"
 const game_save_version: int = 1
-const key_game_save_version: String = "version"
+
+
+#Three Dictionaries, Largest is game_save_data, defined here.
+#game_save_data contains version, location of map to be loaded, and a sub dictionary named
+#per_map_data 
 
 var game_save_data: Dictionary = {}
-const map_path_prefix: String = "res://maps/"
+const key_game_save_version: String = "version"
 const key_per_map_data: String = "per_map_data"
+const key_map_path: String = "map_path"
 
 func _ready() -> void:
 #region Saving/loading
@@ -57,14 +62,22 @@ func load_map(map_path : String) -> void:
 	
 	#await MapTransition.play_enter_map()
 func map_loaded(map: GameMap) -> void:
+	#Defining map to be loaded (entry for key_map_path)
 	var map_path: String = map.scene_file_path
 	game_save_data[key_map_path] = map.scene_file_path
 	
+	#Defining per_map_data as entry dictionary within game_save data
+	#under key key_per_map_data
 	var per_map_data: Dictionary = game_save_data[key_per_map_data] as Dictionary
 	
+	#Checking if per_map_data contains current map path. If not, generate new dictionary
+	#within per_map_data with a key of map_path
 	if not per_map_data.has(map_path):
 		per_map_data[map_path] = {}
 	else:
+	#Updating current_map_save_data to be the same as whats in the save file. I think
+	#this also works the other way (updating save file based on data in map.gd) because
+	#they are now the same object?
 		map.current_map_save_data = per_map_data[map_path]
 	
 	var game_save_file: FileAccess = FileAccess.open(game_save_path, FileAccess.WRITE)
