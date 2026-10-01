@@ -3,15 +3,17 @@
 [ext_resource type="Script" uid="uid://cbelm54pdtrlu" path="res://hud.gd" id="1_37p78"]
 [ext_resource type="FontFile" uid="uid://rstw702am2vk" path="res://Bitrimus.ttf" id="2_64ctp"]
 
-[node name="CanvasLayer" type="CanvasLayer" unique_id=628167690 node_paths=PackedStringArray("map_name_label", "map_time_label", "best_time_label", "new_best_time_map_label")]
-layer = 3
+[node name="CanvasLayer" type="CanvasLayer" unique_id=628167690 node_paths=PackedStringArray("map_name_label", "map_time_label", "best_time_label", "travel_distance_label", "new_best_time_map_label", "new_best_time_timer")]
 script = ExtResource("1_37p78")
 map_name_label = NodePath("map_name")
 map_time_label = NodePath("map_time")
 best_time_label = NodePath("best_time")
-new_best_time_map_label = NodePath("new_best_time")
+travel_distance_label = NodePath("travel_distance")
+new_best_time_map_label = NodePath("new_best_time_layer/new_best_time")
+new_best_time_timer = NodePath("new_best_time_layer/new_best_time/new_best_time_timer")
 
 [node name="map_name" type="Label" parent="." unique_id=920621197]
+z_index = -1
 offset_left = 16.0
 offset_right = 164.0
 offset_bottom = 23.0
@@ -20,6 +22,7 @@ theme_override_font_sizes/font_size = 16
 text = "what the kind of map is this"
 
 [node name="map_time" type="Label" parent="." unique_id=929821465]
+z_index = -1
 offset_left = 324.0
 offset_right = 384.0
 offset_bottom = 23.0
@@ -29,16 +32,51 @@ text = "0.0"
 horizontal_alignment = 2
 
 [node name="best_time" type="Label" parent="." unique_id=1302440052]
+z_index = -1
 offset_left = 269.0
 offset_right = 329.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("2_64ctp")
 text = "sum ting wong"
 
-[node name="new_best_time" type="Label" parent="." unique_id=1324620465]
-offset_left = 16.0
-offset_top = 214.0
-offset_right = 164.0
-offset_bottom = 237.0
+[node name="new_best_time_layer" type="CanvasLayer" parent="." unique_id=1603256801]
+layer = 3
+
+[node name="new_best_time" type="Label" parent="new_best_time_layer" unique_id=1324620465]
+z_index = 4
+offset_left = 23.0
+offset_top = 208.0
+offset_right = 171.0
+offset_bottom = 231.0
 theme_override_fonts/font = ExtResource("2_64ctp")
-text = "New best time! "
+text = "test"
+metadata/_edit_group_ = true
+
+[node name="new_best_time_timer" type="Timer" parent="new_best_time_layer/new_best_time" unique_id=290463451]
+wait_time = 3.5
+one_shot = true
+
+[node name="ColorRect2" type="ColorRect" parent="new_best_time_layer/new_best_time" unique_id=1479792408]
+z_index = -2
+layout_mode = 0
+offset_left = -12.0
+offset_top = -8.0
+offset_right = 146.0
+offset_bottom = 22.0
+
+[node name="ColorRect" type="ColorRect" parent="new_best_time_layer/new_best_time" unique_id=925080160]
+z_index = -1
+layout_mode = 0
+offset_left = -9.0
+offset_top = -5.0
+offset_right = 143.0
+offset_bottom = 19.0
+color = Color(0.11372549, 0.12941177, 0.5411765, 1)
+
+[node name="travel_distance" type="Label" parent="." unique_id=128892832]
+offset_left = 325.0
+offset_top = 211.0
+offset_right = 365.0
+offset_bottom = 234.0
+
+[connection signal="timeout" from="new_best_time_layer/new_best_time/new_best_time_timer" to="." method="_on_new_best_time_timer_timeout"]

@@ -1,5 +1,5 @@
 class_name MovableObject
-extends CharacterBody2D
+extends InteractiveObject
 @export_range (0.0, 10.0) var drag := 5.0
 @export_range (0.0, 1.0) var impact_response := 0.5 
 @export var initial_velocity := Vector2.ZERO

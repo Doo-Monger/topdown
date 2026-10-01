@@ -1,8 +1,14 @@
-extends CharacterBody2D
+class_name PlayerCharacter
+extends InteractiveObject
+
+var last_position: Vector2
+var travel_distance := 0.0 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
+		
+
 
 @export_range(0,1000) var SPEED := 60
 func _physics_process(delta: float) -> void:
@@ -19,6 +25,9 @@ func resolve_collisions() -> void:
 				COLLISION_BODY.apply_impact(velocity)
 func get_input() -> void:
 	var VECTOR : Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = VECTOR * SPEED
+	if not Main.animation_is_playing:
+		velocity = VECTOR * SPEED
+	else: 
+		velocity = Vector2.ZERO
 	pass
 	

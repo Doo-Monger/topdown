@@ -1,6 +1,10 @@
 	shit to do:
 	 figure out how to adjust particle density when moving 
 	
+In-house previewer is neat/	
+	
+Ctrl+Shift+F = Find in Files VERY USEFUL
+	
 Variables referencing the same dictionary object is fine
 	
 Dictionary within dictionary is neat

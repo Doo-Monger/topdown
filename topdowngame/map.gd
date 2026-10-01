@@ -22,7 +22,7 @@ func _ready() -> void:
 	Main.map_loaded(self)
 	Hud.show_map_info(self)
 func _process(delta: float) -> void:
-	if not map_is_completed:
+	if not map_is_completed and not Main.animation_is_playing:
 		current_map_time += delta
 	Hud.show_map_time(current_map_time)
 	
@@ -46,3 +46,4 @@ func _update_best_time() -> void:
 	):
 		current_map_save_data[key_best_time] = snapped(current_map_time, 0.01)
 		print("New Best Time:" + str(current_map_save_data[key_best_time]))
+		Hud.show_new_map_best_time(current_map_save_data[key_best_time])

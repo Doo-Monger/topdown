@@ -1,5 +1,7 @@
 extends Node
 
+var animation_is_playing: bool = false 
+
 const map_path_prefix: String = "res://maps/"
 const game_save_path: String = "user://save.save"
 const game_save_version: int = 1
@@ -40,6 +42,7 @@ func load_next_map() -> void:
 	
 	ResourceLoader.load_threaded_request(next_map_path)
 	
+	animation_is_playing = true
 	await MapTransition.play_exit_map()
 	
 	if ResourceLoader.exists(next_map_path):
@@ -50,6 +53,7 @@ func load_next_map() -> void:
 		get_tree().change_scene_to_file("res://maps/map.001.tscn")
 	
 	await MapTransition.play_enter_map()	
+	animation_is_playing = false
 func load_map(map_path : String) -> void:
 	prints("loading map " + map_path)
 	ResourceLoader.load_threaded_request(map_path)
