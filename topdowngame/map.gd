@@ -33,9 +33,7 @@ func _on_detector_validity_changed(VALID: bool) -> void:
 	if VALID:
 		DET_COUNT_VALID += 1
 		if DET_COUNT_VALID == DET_COUNT:
-			map_is_completed = true
-			_update_best_time()
-			Main.load_next_map()
+			_map_is_completed()
 	else:
 		DET_COUNT_VALID -= 1
 	
@@ -47,3 +45,11 @@ func _update_best_time() -> void:
 		current_map_save_data[key_best_time] = snapped(current_map_time, 0.01)
 		print("New Best Time:" + str(current_map_save_data[key_best_time]))
 		Hud.show_new_map_best_time(current_map_save_data[key_best_time])
+
+func _map_is_completed() -> void:
+	map_is_completed = true
+	$character.map_is_over()
+	_update_best_time()
+	Main.stats_update_time_played(current_map_time)
+	Main.stats_update_buttons_pushed(DET_COUNT)
+	Main.load_next_map()

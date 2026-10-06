@@ -16,9 +16,13 @@ const key_game_save_version: String = "version"
 const key_per_map_data: String = "per_map_data"
 const key_map_path: String = "map_path"
 
-func _ready() -> void:
-#region Saving/loading
+var game_stats: Dictionary = {}
+const key_game_stats: String = "statistics"
+const key_distance_travelled: String = "total_distance"
+const key_buttons_pushed: String = "buttons_pushed"
+const key_time_played: String = "time_played"
 
+func _ready() -> void:
 	if FileAccess.file_exists(game_save_path):
 		var game_save_file: FileAccess = FileAccess.open(
 			game_save_path, FileAccess.READ
@@ -32,7 +36,18 @@ func _ready() -> void:
 	
 	if not game_save_data.has(key_per_map_data):
 		game_save_data[key_per_map_data] = {}	
-	#endregion
+	
+	if not game_save_data.has(key_game_stats):
+		game_stats = {
+			key_distance_travelled : 0,
+			key_buttons_pushed : 0,
+			key_time_played : 0
+		}
+		game_save_data[key_game_stats] = game_stats
+		print("No stats found!")
+	else:
+		game_stats = game_save_data[key_game_stats] as Dictionary
+		prints("Stats found!", game_stats)
 func load_next_map() -> void: 
 	print("loading next map!!!")
 	var split_path: Array = (game_save_data[key_map_path] as String).split(".")
@@ -90,6 +105,7 @@ func map_loaded(map: GameMap) -> void:
 func can_continue() -> bool:
 	return game_save_data.has(key_map_path)
 func load_continue_map() -> void:
+	
 	if not can_continue():
 		print("No save file!")
 		return
@@ -106,4 +122,17 @@ func load_continue_map() -> void:
 		return
 	else:
 		load_map(map_path)
+
+func stats_update_total_distance(amount: int) -> void:
+	game_stats[key_distance_travelled] += amount
+	print(game_stats)
+func stats_update_buttons_pushed(amount: int) -> void:
+	game_stats[key_buttons_pushed] += amount
+func stats_update_time_played(amount: float) -> void:
+	game_stats[key_time_played] += snapped(amount, 0.1)
+
+#func stats_update_all() -> void:		if want to scale, make it take an array.
+#	stats_update_buttons_pushed()
+	
+	
 	

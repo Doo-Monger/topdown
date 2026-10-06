@@ -15,7 +15,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		position = round(position)
 		velocity = Vector2.ZERO
-			
 
 func apply_impact(IMPACT_VELOCITY: Vector2) -> void:
 	velocity += (IMPACT_VELOCITY - velocity) * impact_response
