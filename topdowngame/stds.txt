@@ -1,20 +1,41 @@
 	shit to do:
 	 figure out how to adjust particle density when moving 
 	
+
+
+
+Tentative knowledge of "as" keyword:
+	It performs "runtime casting", the static version of casting is ":", which we are already
+	familiar with. "as" is useful when you don't know the exact type of object whenever the
+	method it is a part of is declared
+	
+	For example...
+	coins_in_my_pocket = $Quarter as Coin, where Coin is assumed to be a superclass of $Quarter,
+	and $Quarter by extension is a derived class (or subclass) of Coin.
+	In this example, the as operator is used to ensure that coins_in_my_pocket will always be
+	typed as a Coin, rather than any of its existing subclasses, say for example $nickel
+	or $penny (young sheldon). If the value is not of the target type, or a subtype of the 
+	target type - say, for example "$dollar", then it would return null. 
+	
+	///POSSIBLE AI SLOP ZONE///
+	SUPPOSEDLY, this relationship only works when casting to a higher level class. If for
+	example, you tried to cast $Money as Coin, it would just return $Money, assuming $Money
+	is a superclass of Coin. 
+	SUPPOSEDLY, can also be used to cast built-in types to one another, for example int to float
+	or int to string. 
+
+operator = symbol performing action, operand = values being operated on
+Variables of type array can also have objects within the array typed.	
+you can call "if not varible" to determine if the variable has an assigned value or not	
+super() used to call methods from superclass
+Supposedly can link methods with [method method_name]? doesnt seem to work idk
 In-house previewer is neat/	
-	
 Ctrl+Shift+F = Find in Files VERY USEFUL
-	
 Variables referencing the same dictionary object is fine
-	
 Dictionary within dictionary is neat
-	
 ctrl+K to comment stuff out
-
 get_node() is the same as putting a dollar sign in front of object?
-
 Ctrl+ click to view var declaration.
-
 Copy pasting root node just instantiates. If want node itself, must not be root node.	
 	
 exporting a variable means that you are able to adjust said variable while using the rest of

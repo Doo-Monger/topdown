@@ -55,10 +55,11 @@ gravity = Vector3(0, 0, 0)
 color = Color(0.8901193, 0.9945101, 0.9609614, 1)
 alpha_curve = SubResource("CurveTexture_wijl4")
 
-[node name="character" type="CharacterBody2D" unique_id=584528449]
+[node name="character" type="CharacterBody2D" unique_id=584528449 node_paths=PackedStringArray("collision_shape")]
 material = SubResource("CanvasItemMaterial_p5pve")
 motion_mode = 1
 script = ExtResource("1_glpr6")
+collision_shape = NodePath("character_col")
 metadata/_edit_group_ = true
 
 [node name="character_col" type="CollisionShape2D" parent="." unique_id=103297407]

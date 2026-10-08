@@ -19,11 +19,12 @@ fill_to = Vector2(1, 0.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(8, 8)
 
-[node name="moveable_obj" type="CharacterBody2D" unique_id=262011039]
+[node name="moveable_obj" type="CharacterBody2D" unique_id=262011039 node_paths=PackedStringArray("collision_shape")]
 light_mask = 2
 collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_87uk7")
+collision_shape = NodePath("CollisionShape2D")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=195877043]
 occluder = SubResource("OccluderPolygon2D_g4v7s")

@@ -37,6 +37,11 @@ func _on_detector_validity_changed(VALID: bool) -> void:
 	else:
 		DET_COUNT_VALID -= 1
 	
+func has_best_time() -> bool:
+	return current_map_save_data.has[key_best_time]
+#requires [method has_best_time] to return true!
+func get_best_time() -> float:
+	return current_map_save_data[key_best_time]
 func _update_best_time() -> void:
 	if (
 	not current_map_save_data.has(key_best_time)

@@ -30,8 +30,8 @@ grow_vertical = 2
 
 [node name="new_game_button" type="Button" parent="menu_buttons" unique_id=141347216]
 layout_mode = 1
-offset_right = 8.0
-offset_bottom = 8.0
+offset_right = 93.0
+offset_bottom = 31.0
 text = "New Game"
 
 [node name="continue_button" type="Button" parent="menu_buttons" unique_id=1545028204]
@@ -41,6 +41,14 @@ offset_top = 34.0
 offset_right = 85.0
 offset_bottom = 65.0
 text = "Continue"
+
+[node name="stats_button" type="Button" parent="menu_buttons" unique_id=549435594]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 68.0
+offset_right = 85.0
+offset_bottom = 99.0
+text = "Statistics"
 
 [connection signal="pressed" from="menu_buttons/new_game_button" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="menu_buttons/continue_button" to="." method="_on_continue_button_pressed"]
