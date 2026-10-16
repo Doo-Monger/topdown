@@ -10,3 +10,5 @@ func get_current_rect() -> Rect2:
 
 func displace(offset: Vector2) -> void:
 	position += offset
+func displace_to(destination: Vector2) -> void:
+	position = destination

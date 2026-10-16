@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c3lmfn7wp605r" path="res://character.tscn" id="2_nj66f"]
 [ext_resource type="PackedScene" uid="uid://cvs66jwabnnq6" path="res://moveable_obj.tscn" id="3_t0n67"]
 [ext_resource type="PackedScene" uid="uid://cgt1pielpx1pc" path="res://detector.tscn" id="4_id6c4"]
+[ext_resource type="PackedScene" uid="uid://ge2ow3kv4l5x" path="res://teleporter_source.tscn" id="6_id6c4"]
+[ext_resource type="PackedScene" uid="uid://kr1h7naoivil" path="res://teleporter_destination.tscn" id="7_mtdrw"]
 
 [node name="Map002" type="Node" unique_id=1869980539]
 script = ExtResource("1_nj66f")
@@ -65,3 +67,24 @@ position = Vector2(182, 51)
 OFF_COLOR = Color(1, 0, 0, 1)
 ON_COLOR = Color(0, 1, 0, 1)
 PULSE_FREQ = 0.25
+
+[node name="Teleporters" type="Node" parent="." unique_id=492105665]
+
+[node name="TeleporterSource2" parent="Teleporters" unique_id=768525427 node_paths=PackedStringArray("destination") instance=ExtResource("6_id6c4")]
+position = Vector2(182, 190)
+valid_color = Color(0.71246004, 0.5791766, 1.92523e-07, 0.5019608)
+destination = NodePath("../TeleportDestination2")
+
+[node name="TeleporterSource" parent="Teleporters" unique_id=650866485 node_paths=PackedStringArray("destination") instance=ExtResource("6_id6c4")]
+position = Vector2(222, 178)
+destination = NodePath("../TeleportDestination")
+
+[node name="TeleportDestination" parent="Teleporters" unique_id=1750755515 instance=ExtResource("7_mtdrw")]
+position = Vector2(248, 30)
+
+[node name="TeleporterSource3" parent="Teleporters" unique_id=1955984344 node_paths=PackedStringArray("destination") instance=ExtResource("6_id6c4")]
+position = Vector2(253, 206)
+destination = NodePath("../TeleportDestination")
+
+[node name="TeleportDestination2" parent="Teleporters" unique_id=2027401642 instance=ExtResource("7_mtdrw")]
+position = Vector2(68, 109)

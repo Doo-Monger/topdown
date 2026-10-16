@@ -15,12 +15,15 @@ var game_save_data: Dictionary = {}
 const key_game_save_version: String = "version"
 const key_per_map_data: String = "per_map_data"
 const key_map_path: String = "map_path"
+const key_game_stats: String = "statistics"
 
 var game_stats: Dictionary = {}
-const key_game_stats: String = "statistics"
-const key_distance_travelled: String = "total_distance"
-const key_buttons_pushed: String = "buttons_pushed"
-const key_time_played: String = "time_played"
+var game_stats_keys: Array = [
+	"total_distance",
+	"buttons_pushed",
+	"time_played",
+	"teleporters_used"
+	]
 
 func _ready() -> void:
 	if FileAccess.file_exists(game_save_path):
@@ -38,11 +41,14 @@ func _ready() -> void:
 		game_save_data[key_per_map_data] = {}	
 	
 	if not game_save_data.has(key_game_stats):
-		game_stats = {
-			key_distance_travelled : 0,
-			key_buttons_pushed : 0,
-			key_time_played : 0
-		}
+		for stat_name: String in game_stats_keys:
+			game_stats[stat_name] = 0
+		#game_stats = {
+			#key_distance_travelled : 0,
+			#key_buttons_pushed : 0,
+			#key_time_played : 0
+		#}
+		
 		game_save_data[key_game_stats] = game_stats
 		print("No stats found!")
 	else:
@@ -101,6 +107,7 @@ func map_loaded(map: GameMap) -> void:
 	
 	var game_save_file: FileAccess = FileAccess.open(game_save_path, FileAccess.WRITE)
 	game_save_file.store_var(game_save_data)
+	print(game_stats)
 
 func can_continue() -> bool:
 	return game_save_data.has(key_map_path)
@@ -124,13 +131,13 @@ func load_continue_map() -> void:
 		load_map(map_path)
 
 func stats_update_total_distance(amount: int) -> void:
-	game_stats[key_distance_travelled] += amount
-	print(game_stats)
+	game_stats["total_distance"] += amount
 func stats_update_buttons_pushed(amount: int) -> void:
-	game_stats[key_buttons_pushed] += amount
+	game_stats["buttons_pushed"] += amount
 func stats_update_time_played(amount: float) -> void:
-	game_stats[key_time_played] += snapped(amount, 0.1)
-
+	game_stats["time_played"] += snapped(amount, 0.1)
+func stats_update_teleporters_used(amount: int) -> void:
+	game_stats["teleporters_used"] += amount
 #func stats_update_all() -> void:		if want to scale, make it take an array.
 #	stats_update_buttons_pushed()
 	

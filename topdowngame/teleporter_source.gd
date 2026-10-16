@@ -4,42 +4,70 @@ extends Area2D
 @export var sprite: Sprite2D
 @export var particles: GPUParticles2D
 @export var collision_shape: CollisionShape2D
+@export var line: Line2D
 
 @export var valid_color: Color = Color(Color.CYAN, 0.5)
 @export var invalid_color: Color = Color(Color.MAGENTA, 0.5)
 
 @export var destination: TeleporterDestination
 
-var is_active: bool = true
+@export var pulse_freq: float = 1.5
+var pulse_prog: float = 0.0
 
+var is_active: bool = true
 var objects: Array[InteractiveObject] = []
 
+func _process(delta: float) -> void:
+	if is_active:
+		pulse_prog += pulse_freq * delta
+		if pulse_prog >= 1:
+			pulse_prog -= 1
+		var color_mod: float = (0.2*(cos(pulse_prog * TAU) + 1) / 2) + 0.6 # 0-1 
+		sprite.modulate = Color(
+			valid_color.r * color_mod,
+			valid_color.g * color_mod,
+			valid_color.b * color_mod
+	)
 func _ready() -> void:
 	if not destination:
 		is_active = false ## "is off" vs "toggle off"
 		sprite.modulate = invalid_color
+		set_physics_process(false)
 	else:
 		destination.validity_changed.connect(_on_destination_validity_changed)
+		
 		sprite.modulate = valid_color
 		destination.sprite.modulate = valid_color
 		particles.modulate = valid_color
 		destination.particles.modulate = valid_color
+		
+		line.modulate = valid_color
+		line.add_point(Vector2.ZERO)
+		prints("line add destination position = ", destination.position)
+		line.add_point(destination.position - position)
 func _physics_process(_delta: float) -> void:
 	if not is_active or objects.is_empty():
+		set_physics_process(false)
 		return
 	var own_rect: Rect2 = collision_shape.shape.get_rect()
-	own_rect.position += position
+	#.get_rect() returns coordinates relative to teleporter itself, necessitating
+	#adding it with the position of the teleporter. 
+	own_rect.position += position 
 	for object in objects:
 		if own_rect.encloses(object.get_current_rect()):
-			object.displace(destination.position - position)
+			prints("teleport destination position = ", destination.position)
+			object.displace_to(destination.position)
 			particles.emitting = true
 			destination.particles.emitting = true
 
 func _on_destination_validity_changed(valid: bool) -> void:
 	is_active = valid
+	set_physics_process(valid)
 	var color: Color = valid_color if valid else invalid_color 
 	sprite.modulate = color
 	destination.sprite.modulate = color	
+	if valid:
+		pulse_prog = 0.5
 func _toggle_on() -> void:
 	is_active = true
 	sprite.modulate = valid_color
@@ -51,8 +79,9 @@ func _on_body_entered(body: Node2D) -> void:
 	var object: InteractiveObject = body as InteractiveObject
 	if object:
 		objects.push_back(object) #goofy ass name for a simple array appending method
+		set_physics_process(true)
 func _on_body_exited(body: Node2D) -> void:
 	var index_to_remove: int = objects.find(body as InteractiveObject)
-	if index_to_remove >= 0:
+	if index_to_remove >= 0: #.find returns -1 if no matching object found
 		objects.remove_at(index_to_remove)
 		

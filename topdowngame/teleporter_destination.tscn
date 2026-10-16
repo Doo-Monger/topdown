@@ -27,7 +27,16 @@ emission_shape = 3
 emission_box_extents = Vector3(6, 6, 1)
 gravity = Vector3(0, 0, 0)
 
-[node name="Area2D" type="Area2D" unique_id=1955984344 node_paths=PackedStringArray("sprite", "particles")]
+[sub_resource type="Gradient" id="Gradient_jq1q4"]
+offsets = PackedFloat32Array(0.33795014, 1)
+colors = PackedColorArray(0.33795014, 0.33795014, 0.33795014, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jq1q4"]
+gradient = SubResource("Gradient_jq1q4")
+fill = 2
+fill_from = Vector2(0.4957265, 0.491453)
+
+[node name="TeleportDestination" type="Area2D" unique_id=1955984344 node_paths=PackedStringArray("sprite", "particles")]
 script = ExtResource("1_jq1q4")
 sprite = NodePath("character_spr")
 particles = NodePath("GPUParticles2D")
@@ -37,6 +46,7 @@ shape = SubResource("RectangleShape2D_g4v7s")
 
 [node name="character_spr" type="Sprite2D" parent="." unique_id=1897927983]
 modulate = Color(1, 1, 1, 0.4627451)
+light_mask = 5
 texture_filter = 1
 use_parent_material = true
 texture = ExtResource("2_xxvcb")
@@ -53,6 +63,13 @@ fixed_fps = 60
 interpolate = false
 fract_delta = false
 process_material = SubResource("ParticleProcessMaterial_nf4i0")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=391481282]
+position = Vector2(5.9604645e-08, 1.1920929e-07)
+scale = Vector2(0.25, 0.25)
+range_item_cull_mask = 4
+shadow_item_cull_mask = 0
+texture = SubResource("GradientTexture2D_jq1q4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

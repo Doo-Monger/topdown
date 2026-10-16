@@ -43,6 +43,11 @@ func _get_input() -> void:
 func displace(offset: Vector2) -> void:
 	super(offset)
 	last_position = position
+func displace_to(destination: Vector2) -> void:
+	super(destination)
+	last_position = position
+	Main.stats_update_teleporters_used(1)
+	
 
 func map_is_over() -> void:
 	Main.stats_update_total_distance(travel_distance)
