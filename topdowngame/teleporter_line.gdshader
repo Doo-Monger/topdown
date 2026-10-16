@@ -6,7 +6,8 @@ void vertex() {
 }
 
 void fragment() {
-	COLOR.a *= step(0.75, fract(UV.x * 0.25 - TIME * 0.5));
+	COLOR.a *= step(0.5, fract(UV.x * 0.1 - TIME * 3.5));
+	//COLOR.a *= fract(UV.x * 0.25 - TIME * 0.5);
 }
 
 //void light() {

@@ -36,6 +36,9 @@ gradient = SubResource("Gradient_jq1q4")
 fill = 2
 fill_from = Vector2(0.4957265, 0.491453)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jq1q4"]
+radius = 35.014282
+
 [node name="TeleportDestination" type="Area2D" unique_id=1955984344 node_paths=PackedStringArray("sprite", "particles")]
 script = ExtResource("1_jq1q4")
 sprite = NodePath("character_spr")
@@ -70,6 +73,12 @@ scale = Vector2(0.25, 0.25)
 range_item_cull_mask = 4
 shadow_item_cull_mask = 0
 texture = SubResource("GradientTexture2D_jq1q4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=968738796]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2106512040]
+shape = SubResource("CircleShape2D_jq1q4")
+debug_color = Color(0.84790415, 0.22508124, 0.74688554, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

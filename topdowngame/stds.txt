@@ -1,4 +1,8 @@
 make tp line only appear on proximity
+	current plan is have player character call functions under MapObject to cause objects
+	to activate when player is near. PlayerCharacter needs some way to tell when objects
+	will activate, based on their exported max range. 
+what are groups?
 icy terrain to permit crate sliding
 stats menu
 level select

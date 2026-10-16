@@ -1,5 +1,5 @@
 class_name TeleporterSource
-extends Area2D
+extends MapObject
 
 @export var sprite: Sprite2D
 @export var particles: GPUParticles2D
@@ -7,7 +7,7 @@ extends Area2D
 @export var line: Line2D
 
 @export var valid_color: Color = Color(Color.CYAN, 0.5)
-@export var invalid_color: Color = Color(Color.MAGENTA, 0.5)
+@export var invalid_color: Color = Color(Color.DARK_RED, 0.5)
 
 @export var destination: TeleporterDestination
 
@@ -16,6 +16,9 @@ var pulse_prog: float = 0.0
 
 var is_active: bool = true
 var objects: Array[InteractiveObject] = []
+
+#var player_in_range: bool = false
+#var player: PlayerCharacter #this seems stupid
 
 func _process(delta: float) -> void:
 	if is_active:
@@ -28,6 +31,11 @@ func _process(delta: float) -> void:
 			valid_color.g * color_mod,
 			valid_color.b * color_mod
 	)
+	#if player_in_range:
+		##print(line.default_color.a)
+		##print(distance_to_player)
+		#line.default_color.a = 1 - ((player.position.distance_to(self.global_position))/50) 
+		
 func _ready() -> void:
 	if not destination:
 		is_active = false ## "is off" vs "toggle off"
@@ -45,6 +53,7 @@ func _ready() -> void:
 		line.add_point(Vector2.ZERO)
 		prints("line add destination position = ", destination.position)
 		line.add_point(destination.position - position)
+	
 func _physics_process(_delta: float) -> void:
 	if not is_active or objects.is_empty():
 		set_physics_process(false)
@@ -85,3 +94,9 @@ func _on_body_exited(body: Node2D) -> void:
 	if index_to_remove >= 0: #.find returns -1 if no matching object found
 		objects.remove_at(index_to_remove)
 		
+#func _on_area_2d_body_entered(body: PlayerCharacter) -> void:
+	#player_in_range = true
+	#player = body
+#func _on_area_2d_body_exited(body: Node2D) -> void:
+	#player_in_range = false
+	#line.default_color.a = 0
