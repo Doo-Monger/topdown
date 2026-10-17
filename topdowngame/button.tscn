@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b8libb02yx1ec"]
+
+[ext_resource type="Script" uid="uid://cupneexkua51f" path="res://button.gd" id="1_r04n3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_urblq"]
+
+[sub_resource type="Gradient" id="Gradient_8tf4g"]
+offsets = PackedFloat32Array(0, 0.70914125, 0.92520773)
+colors = PackedColorArray(1, 1, 1, 1, 0.65012825, 0.6501283, 0.65012825, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_r04n3"]
+gradient = SubResource("Gradient_8tf4g")
+width = 8
+height = 8
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="button" type="Area2D" unique_id=548578377]
+z_index = -1
+material = SubResource("CanvasItemMaterial_urblq")
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_r04n3")
+player_detect_max = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1011969182]
+modulate = Color(0.5998594, 0.6537723, 0.66773784, 1)
+texture_filter = 1
+texture = SubResource("GradientTexture2D_r04n3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

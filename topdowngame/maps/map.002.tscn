@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cgt1pielpx1pc" path="res://detector.tscn" id="4_id6c4"]
 [ext_resource type="PackedScene" uid="uid://ge2ow3kv4l5x" path="res://teleporter_source.tscn" id="6_id6c4"]
 [ext_resource type="PackedScene" uid="uid://kr1h7naoivil" path="res://teleporter_destination.tscn" id="7_mtdrw"]
+[ext_resource type="PackedScene" uid="uid://b8libb02yx1ec" path="res://button.tscn" id="8_mtdrw"]
 
 [node name="Map002" type="Node" unique_id=1869980539]
 script = ExtResource("1_nj66f")
@@ -48,21 +49,18 @@ position = Vector2(314, 151)
 [node name="Detectors" type="Node" parent="." unique_id=168469794]
 
 [node name="Detector" parent="Detectors" unique_id=548578377 instance=ExtResource("4_id6c4")]
-z_index = -1
 position = Vector2(261, 173)
 OFF_COLOR = Color(1, 0, 0, 1)
 ON_COLOR = Color(0, 1, 0, 1)
 PULSE_FREQ = 0.25
 
 [node name="Detector2" parent="Detectors" unique_id=1431340217 instance=ExtResource("4_id6c4")]
-z_index = -1
 position = Vector2(102, 110)
 OFF_COLOR = Color(1, 0, 0, 1)
 ON_COLOR = Color(0, 1, 0, 1)
 PULSE_FREQ = 0.25
 
 [node name="Detector3" parent="Detectors" unique_id=1120471273 instance=ExtResource("4_id6c4")]
-z_index = -1
 position = Vector2(182, 51)
 OFF_COLOR = Color(1, 0, 0, 1)
 ON_COLOR = Color(0, 1, 0, 1)
@@ -88,3 +86,9 @@ destination = NodePath("../TeleportDestination")
 
 [node name="TeleportDestination2" parent="Teleporters" unique_id=2027401642 instance=ExtResource("7_mtdrw")]
 position = Vector2(68, 109)
+
+[node name="Buttons" type="Node" parent="." unique_id=626679754]
+
+[node name="button" parent="Buttons" unique_id=1116130974 node_paths=PackedStringArray("bound_object") instance=ExtResource("8_mtdrw")]
+position = Vector2(126, 152)
+bound_object = NodePath("../../Teleporters/TeleporterSource")

@@ -1,7 +1,8 @@
-make tp line only appear on proximity
-	current plan is have player character call functions under MapObject to cause objects
-	to activate when player is near. PlayerCharacter needs some way to tell when objects
-	will activate, based on their exported max range. 
+Fix current toggle_off/toggle_on function, right now toggle_off is called every frame as
+long as is_active = false. This is dumb. We need a way to implement a set function on a 
+variable declared in a superclass.
+https://www.reddit.com/r/godot/comments/1e22jfo/can_you_add_a_setter_to_a_variable_defined_in_a/
+
 what are groups?
 icy terrain to permit crate sliding
 stats menu

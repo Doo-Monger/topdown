@@ -14,13 +14,11 @@ extends MapObject
 @export var pulse_freq: float = 1.5
 var pulse_prog: float = 0.0
 
-var is_active: bool = true
 var objects: Array[InteractiveObject] = []
 
-#var player_in_range: bool = false
-#var player: PlayerCharacter #this seems stupid
-
 func _process(delta: float) -> void:
+	if not is_active:
+		_toggle_off()
 	if is_active:
 		pulse_prog += pulse_freq * delta
 		if pulse_prog >= 1:
@@ -31,28 +29,25 @@ func _process(delta: float) -> void:
 			valid_color.g * color_mod,
 			valid_color.b * color_mod
 	)
-	#if player_in_range:
-		##print(line.default_color.a)
-		##print(distance_to_player)
-		#line.default_color.a = 1 - ((player.position.distance_to(self.global_position))/50) 
-		
+	if player_in_range or destination.player_in_range:
+		var distance_to_character: float
+		if player_in_range:
+			distance_to_character= character.position.distance_to(self.global_position)
+			line.default_color.a = 1 - distance_to_character/player_detect_max 
+		else:
+			distance_to_character = destination.character.position.distance_to(destination.global_position)
+		line.default_color.a = 1 - distance_to_character/player_detect_max
+
 func _ready() -> void:
 	if not destination:
-		is_active = false ## "is off" vs "toggle off"
-		sprite.modulate = invalid_color
-		set_physics_process(false)
+		_toggle_off()
 	else:
-		destination.validity_changed.connect(_on_destination_validity_changed)
-		
-		sprite.modulate = valid_color
-		destination.sprite.modulate = valid_color
-		particles.modulate = valid_color
-		destination.particles.modulate = valid_color
-		
-		line.modulate = valid_color
+		destination.validity_changed.connect(_on_validity_changed)
 		line.add_point(Vector2.ZERO)
 		prints("line add destination position = ", destination.position)
 		line.add_point(destination.position - position)
+		super()
+		_toggle_on()
 	
 func _physics_process(_delta: float) -> void:
 	if not is_active or objects.is_empty():
@@ -69,20 +64,27 @@ func _physics_process(_delta: float) -> void:
 			particles.emitting = true
 			destination.particles.emitting = true
 
-func _on_destination_validity_changed(valid: bool) -> void:
-	is_active = valid
-	set_physics_process(valid)
-	var color: Color = valid_color if valid else invalid_color 
-	sprite.modulate = color
-	destination.sprite.modulate = color	
+func _on_validity_changed(valid: bool) -> void:
 	if valid:
-		pulse_prog = 0.5
+		_toggle_on()
+	else:
+		_toggle_off()
+
 func _toggle_on() -> void:
+	set_physics_process(true)
 	is_active = true
 	sprite.modulate = valid_color
+	destination.sprite.modulate = valid_color
+	particles.modulate = valid_color
+	destination.particles.modulate = valid_color
+	line.modulate = valid_color
+	pulse_prog = 0.5
 func _toggle_off() -> void:
+	set_physics_process(false)
 	is_active = false
 	sprite.modulate = invalid_color
+	destination.sprite.modulate = invalid_color
+	line.modulate = invalid_color
 
 func _on_body_entered(body: Node2D) -> void:
 	var object: InteractiveObject = body as InteractiveObject
@@ -93,10 +95,10 @@ func _on_body_exited(body: Node2D) -> void:
 	var index_to_remove: int = objects.find(body as InteractiveObject)
 	if index_to_remove >= 0: #.find returns -1 if no matching object found
 		objects.remove_at(index_to_remove)
-		
-#func _on_area_2d_body_entered(body: PlayerCharacter) -> void:
-	#player_in_range = true
-	#player = body
-#func _on_area_2d_body_exited(body: Node2D) -> void:
-	#player_in_range = false
-	#line.default_color.a = 0
+		#
+##func _on_area_2d_body_entered(body: PlayerCharacter) -> void:
+	##player_in_range = true
+	##player = body
+##func _on_area_2d_body_exited(body: Node2D) -> void:
+	##player_in_range = false
+	##line.default_color.a = 0
