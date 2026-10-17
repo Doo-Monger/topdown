@@ -40,15 +40,13 @@ fill_from = Vector2(0.4957265, 0.491453)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
 shader = ExtResource("3_y66v5")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
-radius = 35.014282
-
-[node name="TeleporterSource" type="Area2D" unique_id=1955984344 node_paths=PackedStringArray("sprite", "particles", "collision_shape", "line")]
+[node name="TeleporterSource" type="Area2D" unique_id=1955984344 node_paths=PackedStringArray("sprite", "particles", "collision_shape", "line", "area_player_detect")]
 script = ExtResource("1_4g2ci")
 sprite = NodePath("character_spr")
 particles = NodePath("GPUParticles2D")
 collision_shape = NodePath("CollisionShape2D")
 line = NodePath("Line2D")
+area_player_detect = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1034771406]
 scale = Vector2(1.3, 1.3)
@@ -88,13 +86,5 @@ width = 3.0
 default_color = Color(1, 1, 1, 0)
 texture_mode = 1
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1038254635]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1566299259]
-shape = SubResource("CircleShape2D_yf5fn")
-debug_color = Color(0.84790415, 0.22508124, 0.74688554, 0.41960785)
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
