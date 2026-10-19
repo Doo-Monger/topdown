@@ -17,8 +17,6 @@ var pulse_prog: float = 0.0
 var objects: Array[InteractiveObject] = []
 
 func _process(delta: float) -> void:
-	if not is_active:
-		_toggle_off()
 	if is_active:
 		pulse_prog += pulse_freq * delta
 		if pulse_prog >= 1:
@@ -69,7 +67,6 @@ func _on_validity_changed(valid: bool) -> void:
 		_toggle_on()
 	else:
 		_toggle_off()
-
 func _toggle_on() -> void:
 	set_physics_process(true)
 	is_active = true
@@ -86,6 +83,10 @@ func _toggle_off() -> void:
 	destination.sprite.modulate = invalid_color
 	line.modulate = invalid_color
 
+func button_toggle(status: bool) -> void:
+	_on_validity_changed(status)
+	destination.button_toggle(status)
+
 func _on_body_entered(body: Node2D) -> void:
 	var object: InteractiveObject = body as InteractiveObject
 	if object:
@@ -96,9 +97,3 @@ func _on_body_exited(body: Node2D) -> void:
 	if index_to_remove >= 0: #.find returns -1 if no matching object found
 		objects.remove_at(index_to_remove)
 		#
-##func _on_area_2d_body_entered(body: PlayerCharacter) -> void:
-	##player_in_range = true
-	##player = body
-##func _on_area_2d_body_exited(body: Node2D) -> void:
-	##player_in_range = false
-	##line.default_color.a = 0

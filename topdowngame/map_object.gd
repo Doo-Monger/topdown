@@ -35,7 +35,7 @@ func _on_character_exited(_body: PlayerCharacter) -> void:
 	prints("super char exit " , player_in_range)
 
 func button_toggle(status: bool) -> void:
-	is_active = status
+	print("no button interaction found!")
 	
 	
 	
